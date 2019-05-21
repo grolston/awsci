@@ -47,4 +47,4 @@ RUN rm -rf ./linux-amd64/ \
 COPY ./config_kube.sh /root/config_kube.sh
 RUN chmod +x /root/config_kube.sh
 
-CMD [ "/usr/bin/pwsh" ]
+CMD [ "/usr/bin/bash" ]
