@@ -20,15 +20,15 @@ do
  esac
 done
 
-echo "${S_K8S_CA_DATA}"
-echo " ${S_K8S_ENDPOINT}"
+#echo "$S_K8S_CA_DATA"
+echo "$S_K8S_ENDPOINT"
 
 cat > /root/.kube/config <<EOF
 apiVersion: v1
 clusters:
 - cluster:
-    server: ${K8S_ENDPOINT}
-    certificate-authority-data: ${K8S_CA_DATA}
+    server: $S_K8S_ENDPOINT
+    certificate-authority-data: $S_K8S_CA_DATA
   name: kubernetes
 contexts:
 - context:
@@ -47,9 +47,9 @@ users:
       args:
         - "token"
         - "-i"
-        - "${S_K8S_CLUSTER_NAME}"
+        - "$S_K8S_CLUSTER_NAME"
         - "-r"
-        - "${S_K8S_ROLE_ARN}"
+        - "$S_K8S_ROLE_ARN"
 EOF
 
 cat > /usr/bin/helm <<"EOF"
