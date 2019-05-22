@@ -4,17 +4,29 @@
 ## The following configures a CI node to run with
 ## AWS EKS. The following environment vars need
 ## to exist in CI:
-##  K8S_CA_DATA
-##  K8S_CLUSTER_NAME
-##  K8S_ROLE_ARN
-##  K8S_ENDPOINT
+##  K8S_CA_DATA -> -c
+##  K8S_CLUSTER_NAME -> -n
+##  K8S_ROLE_ARN -> -r
+##  K8S_ENDPOINT -> -e
+
+while getopts c:n:r:e: option
+do
+ case "${option}"
+ in
+ c) S_K8S_CA_DATA=${OPTARG};;
+ n) S_K8S_CLUSTER_NAME=${OPTARG};;
+ r) S_K8S_ROLE_ARN=${OPTARG};;
+ e) S_K8S_ENDPOINT=${OPTARG};;
+ esac
+done
+
 
 cat > /root/.kube/config <<EOF
 apiVersion: v1
 clusters:
 - cluster:
-    server: ${K8S_ENDPOINT}
-    certificate-authority-data: ${K8S_CA_DATA}
+    server: ${S_K8S_ENDPOINT}
+    certificate-authority-data: ${S_K8S_CA_DATA}
   name: kubernetes
 contexts:
 - context:
@@ -33,9 +45,9 @@ users:
       args:
         - "token"
         - "-i"
-        - "${K8S_CLUSTER_NAME}"
+        - "${S_K8S_CLUSTER_NAME}"
         - "-r"
-        - "${K8S_ROLE_ARN}"
+        - "${S_K8S_ROLE_ARN}"
 EOF
 
 cat > /usr/bin/helm <<"EOF"
