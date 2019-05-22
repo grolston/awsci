@@ -20,6 +20,8 @@ do
  esac
 done
 
+echo "${S_K8S_CA_DATA}"
+echo " ${S_K8S_ENDPOINT}"
 
 cat > /root/.kube/config <<EOF
 apiVersion: v1
