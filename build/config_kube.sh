@@ -27,7 +27,7 @@ cat > /root/.kube/config <<EOF
 apiVersion: v1
 clusters:
 - cluster:
-    server: ${S_K8S_ENDPOINT}
+    server: ${K8S_ENDPOINT}
     certificate-authority-data: ${K8S_CA_DATA}
   name: kubernetes
 contexts:
