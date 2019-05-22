@@ -28,7 +28,7 @@ apiVersion: v1
 clusters:
 - cluster:
     server: ${S_K8S_ENDPOINT}
-    certificate-authority-data: ${S_K8S_CA_DATA}
+    certificate-authority-data: ${K8S_CA_DATA}
   name: kubernetes
 contexts:
 - context:
