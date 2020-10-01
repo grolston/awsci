@@ -10,4 +10,7 @@ RUN apk add ruby-webrick
 RUN gem install cfn-nag
 RUN npm install -g cfn-lint
 
+# Default commands to pwsh
+ENTRYPOINT ["pwsh","-c"]
+
 CMD [ "/usr/bin/pwsh" ]
