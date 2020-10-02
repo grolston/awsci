@@ -11,6 +11,6 @@ RUN gem install cfn-nag
 RUN npm install -g cfn-lint
 
 # Default commands to pwsh
-ENTRYPOINT ["pwsh","-c"]
+# ENTRYPOINT ["pwsh","-c"]
 
 CMD [ "/usr/bin/pwsh" ]
